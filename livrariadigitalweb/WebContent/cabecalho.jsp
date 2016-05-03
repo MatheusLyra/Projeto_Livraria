@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<img alt="" src="img/logosenac.jpg"/><h1>Livraria Senac</h1>
+<img alt="" src="img/logosenac.jpg"/><h1>Livraria Senac teste</h1>
 <hr/>
 <hr/>
 </body>
