@@ -3,11 +3,13 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title>Lista livros</title>
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<script type="text/javascript" src="js/jquery-1.8.2.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
 	</head>
 	<body>
-		<c:import url="cabecalho.jsp" />
-		<jsp:useBean id="dao" class="livrariadigital.dao.LivroDao"></jsp:useBean>
+		<!--<c:import url="cabecalho.jsp" />-->
+		<!--<jsp:useBean id="dao" class="livrariadigital.dao.LivroDao"></jsp:useBean>-->
 		<table border="1">
 			<tr bgcolor="6c7b8b" align="center">
 				<td>Id</td>
@@ -16,9 +18,10 @@
 				<td>Editora</td>
 				<td>E-mail</td>
 				<td>Data de lançamento</td>
+				<td>Ações</td>
 			</tr>
 
-			<c:forEach var="livro" items="${dao.lista}" varStatus="id">
+			<c:forEach var="livro" items="${livros}" varStatus="id">
 			<tr bgcolor="#${id.count % 2 == 0 ? 'd3d3d3' : 'ffffff' }">
 				<td>${id.count}</td>
 				<td>${livro.titulo}</td>
@@ -33,11 +36,18 @@
 					</c:if>
 				</td>
 				<td>
-					<fmt:formatDate value="${livro.dataLancamento.time}" pattern="dd-MMM-yyyy"/>
+					<fmt:formatDate value="${livro.dataLancamento.time}" pattern="dd/MM/yyyy"/>
+				</td>
+				<td>
+					<a href="AlterarLivro?id=${id.count}" class="btn btn-default btn-xs active">Alterar</span></a>
+					 
+					<a href="ExcluirLivro?id=${id.count}" class="btn btn-danger btn-xs active">Excluir</span></a>
+					
+					<a href="DetalharLivr?id=${id.count}" class="btn btn-success btn-xs active">Detalhar</span></a>
 				</td>
 			</tr>
 			</c:forEach>
 		</table>
-		<c:import url="rodape.jsp" />
+		<!--<c:import url="rodape.jsp" />-->
 	</body>
 </html>

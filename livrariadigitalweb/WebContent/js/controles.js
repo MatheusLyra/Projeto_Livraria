@@ -5,9 +5,12 @@
 $(document).ready(function() {
 	 $('#botao').click(function(){ //Quando clicado no elemento input
 		 $( '#quadrado' ).show( 'blind', 1000 );
-    	 // alert( $('#botao').val());
+//		 alert( "teste");
+    	 
           $.ajax({
-              url: 'tabela.jsp',
+        	  type: "POST",
+              url: 'ListarLivros',
+              data: "busca=" + $("#busca").val() + "&tipoBusca=" + $("#tipoBusca").val(),
               success: function(data) {
                 $('#quadrado').html(data);
                 //alert(data);
@@ -15,4 +18,25 @@ $(document).ready(function() {
         });
           
       });
+	 
+	 
+	 
 });
+
+
+
+//    $.ajax({
+//        type: "POST",
+//        url:"ListarLivros",
+//        data: "titulo=" + $("#titulo").val(),
+//        success: function(response) {
+////            alert(MODELO_FORMULARIO_SALVO);
+////            modelos();
+////            modeloListar();
+////            modeloOperacaoReset();
+//        }
+////    ,
+////        error: function(response) {
+////            alert(GLOBAL_ERROR);
+////        }
+//    });

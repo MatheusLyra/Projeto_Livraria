@@ -10,7 +10,7 @@
 <style type="text/css">
         div {
         	display: none;
-            width: 600px;
+            width: 1000px;
             height: 600px;
             background: #ccc;
     		border: 1px solid #000;
@@ -19,7 +19,16 @@
 </head>
 <body>
 	<h1>Livraria Digital</h1>
-	<input type="button" value="AJAX!" ID="botao">
+	<select id="tipoBusca">
+	  <option value="0"></option>
+	  <option value="1">ID</option>
+	  <option value="2">Título</option>
+	  <option value="3">Autor</option>
+	  <option value="4">Editora</option>
+	</select>
+	<input type="text" name="busca"  id="busca"/>
+	<input type="button" value="Buscar" ID="botao">
+	
       <div ID="quadrado">&nbsp;</div>
 </body>
 
