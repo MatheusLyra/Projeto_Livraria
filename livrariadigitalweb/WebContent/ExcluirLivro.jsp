@@ -31,22 +31,20 @@ Deseja realmente excluir esse livro?
 			</tr>
 			<tr>
 				<td>Email</td>
-				<c:if test="${not empty livro.email}">
+				<td><c:if test="${not empty livro.email}">
 						<a href="mailto:${livro.email}">${livro.email}</a>
 					</c:if>
-					<c:if test="${empty livro.email}">
-						E-mail não informado
-					</c:if>
+				<c:if test="${empty livro.email}">
+					E-mail não informado
+				</c:if></td>
 			</tr>
 			
 			<tr>
 				<td>Data de Lançamento</td>
-				<td>
-					<fmt:formatDate value="${livro.dataLancamento.time}" pattern="dd/MM/yyyy"/>
-				</td>
+				<td>"${livro.dataLancamento}"</td>
 			</tr>
 		</table>
-	<form action="ExcluirLivro" method="get">
+	<form action="ExcluirLivro" method="post">
 		<br>
 		<input type="hidden" name="codigo" id="codigo" value="${livro.id}">
 		

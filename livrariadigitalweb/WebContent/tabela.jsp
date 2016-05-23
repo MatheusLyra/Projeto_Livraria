@@ -23,7 +23,7 @@
 
 			<c:forEach var="livro" items="${livros}" varStatus="id">
 			<tr bgcolor="#${id.count % 2 == 0 ? 'd3d3d3' : 'ffffff' }">
-				<td>${id.count}</td>
+				<td>${livro.id}</td>
 				<td>${livro.titulo}</td>
 				<td>${livro.autor}</td>
 				<td>${livro.editora}</td>
@@ -39,11 +39,11 @@
 					<fmt:formatDate value="${livro.dataLancamento.time}" pattern="dd/MM/yyyy"/>
 				</td>
 				<td>
-					<a href="AlterarLivro?id=${id.count}" class="btn btn-default btn-xs active">Alterar</span></a>
+					<span><a href="AlterarLivro?id=${livro.id}" class="btn btn-default btn-xs active">Alterar</span></a>
 					 
-					<a href="ExcluirLivro?id=${id.count}" class="btn btn-danger btn-xs active">Excluir</span></a>
+					<span><a href="ExcluirLivro?id=${livro.id}" class="btn btn-danger btn-xs active">Excluir</span></a>
 					
-					<a href="DetalharLivr?id=${id.count}" class="btn btn-success btn-xs active">Detalhar</span></a>
+					<!-- <span><a href="DetalharLivr?id=${livro.id}" class="btn btn-success btn-xs active">Detalhar</span></a> -->
 				</td>
 			</tr>
 			</c:forEach>

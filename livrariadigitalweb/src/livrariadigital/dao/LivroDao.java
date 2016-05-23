@@ -34,6 +34,7 @@ public class LivroDao {
 			stmt.setString(2, livro.getAutor());
 			stmt.setString(3, livro.getEditora());
 			stmt.setString(4, livro.getEmail());
+			System.out.println(livro.getDataLancamento().getTimeInMillis());
 			stmt.setDate(5, new Date(livro.getDataLancamento().getTimeInMillis()));
 
 			stmt.execute();
@@ -80,7 +81,7 @@ public class LivroDao {
 
 	
 	
-	public List<Livro> getLivro(String id) throws SQLException{     						//já que o retorno é uma lista utiliza list
+	public Livro getLivro(String id) throws SQLException{     						//já que o retorno é uma lista utiliza list
 		StringBuilder sql = new StringBuilder("");
 		
 		sql.append("select * from livros ");
@@ -94,10 +95,9 @@ public class LivroDao {
 		}
 */
 		ResultSet rset = stm.executeQuery();									//
-		List<Livro> livros = new ArrayList<Livro>(); 							//livros é o nome da lista
+		Livro livro = new Livro(); 							//livros é o nome da lista
 		
 		while(rset.next()){														//next movimenta o ponteiro da memoria até encontrar null
-			Livro livro = new Livro();
 			livro.setId(Long.parseLong(rset.getString("id")));
 			livro.setTitulo(rset.getString("titulo"));
 			livro.setAutor(rset.getString("autor"));
@@ -106,19 +106,14 @@ public class LivroDao {
 			
 			Calendar cal = Calendar.getInstance();
 			SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.getDefault());
-			try {
-				cal.setTime(sdf.parse(rset.getString("dataLancamento")));
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
+			cal.setTime(rset.getDate("dataLancamento"));
 			
-			livro.setDataLancamento(cal);
-			livros.add(livro);													//pega o livro em memoria e joga na lista
+			livro.setDataLancamento(cal);												//pega o livro em memoria e joga na lista
 		}
 		
 		rset.close();
 		stm.close();
-		return livros;
+		return livro;
 		
 	}
 	
@@ -170,11 +165,9 @@ public class LivroDao {
 			
 			Calendar cal = Calendar.getInstance();
 			SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.getDefault());
-			try {
-				cal.setTime(sdf.parse(rset.getString("dataLancamento")));
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
+			
+			cal.setTime(rset.getDate("dataLancamento"));
+//				cal.setTime(sdf.parse(rset.getString("dataLancamento")));
 			
 			livro.setDataLancamento(cal);
 			livros.add(livro);													//pega o livro em memoria e joga na lista
@@ -199,6 +192,7 @@ public class LivroDao {
 			stmt.setString(3, livro.getEditora());
 			stmt.setString(4, livro.getEmail());
 			stmt.setDate(5, new Date(livro.getDataLancamento().getTimeInMillis()));
+			stmt.setString(6, livro.getId().toString());
 			
 			stmt.execute();
 			stmt.close(); 
